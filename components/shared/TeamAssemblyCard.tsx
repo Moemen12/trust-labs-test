@@ -65,8 +65,8 @@ const TeamAssemblyCard: React.FC<{ session: AuthSession }> = ({ session }) => {
   const { data: gcpProjects, ...projectsQuery } = useQuery({
     queryKey: ["gcp-projects"],
     queryFn: getGcpProjects,
+    enabled: !!session,
   });
-
   const { data: storageBuckets, ...bucketsQuery } = useQuery({
     queryKey: ["storage-buckets", projectState.confirmedId],
     queryFn: () =>

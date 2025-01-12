@@ -24,6 +24,11 @@ export async function getGcpProjects() {
   try {
     const session: AuthSession = await auth();
 
+    // Early return if no session exists
+    if (!session || !session.accessToken) {
+      throw new Error("Not authenticated");
+    }
+
     const oauth2Client = new google.auth.OAuth2(
       process.env.AUTH_GOOGLE_ID,
       process.env.AUTH_GOOGLE_SECRET,
@@ -31,7 +36,7 @@ export async function getGcpProjects() {
     );
 
     oauth2Client.setCredentials({
-      access_token: session?.accessToken,
+      access_token: session.accessToken,
       scope: "https://www.googleapis.com/auth/cloud-platform",
     });
 
@@ -41,7 +46,6 @@ export async function getGcpProjects() {
     });
 
     const response = await cloudResourceManager.projects.list({});
-
     return response.data.projects || [];
 
     /* eslint-disable @typescript-eslint/no-explicit-any */
