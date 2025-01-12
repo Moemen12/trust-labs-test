@@ -114,7 +114,7 @@ export default async function RootLayout({
             {/* Main content area with fixed sidebar */}
             <div className="pt-[73px] flex">
               <SideBar />
-              <main className="flex-1 p-4 sm:p-6 ml-0 md:ml-64 max-w-[1500px] xxl:mx-auto">
+              <main className="flex-1 p-4 sm:p-6 ml-0 md:ml-64 max-w-[718px] xxl:mx-auto">
                 <div className="max-w-4xl mx-auto">{children}</div>
               </main>
             </div>

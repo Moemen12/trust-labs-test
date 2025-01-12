@@ -74,16 +74,6 @@ export const sideBarLinks: SideBarLink[] = [
 ];
 
 export const tasks: Task[] = [
-  // {
-  //   icon: Users,
-  //   title: "Assemble your team",
-  //   description:
-  //     "Security is a team sport. Bring your key contributors into Rovera",
-  //   details: "Connect Google Workspace · 2 min",
-  //   buttonText: "Connect",
-  //   progress: { value: 0, total: 1 },
-  //   confirmedProjectId: null,
-  // },
   {
     icon: Key,
     title: "Unlock integration",

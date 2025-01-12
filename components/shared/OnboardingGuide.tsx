@@ -21,7 +21,7 @@ const OnboardingGuide: React.FC<OnboardingGuideProps> = ({
         <div className="bg-white rounded-lg border shadow-sm p-4 sm:p-6">
           <div className="flex flex-col sm:flex-row justify-between items-start gap-4 mb-6">
             <div>
-              <h1 className="text-xl sm:text-2xl font-semibold mb-2">
+              <h1 className="text-xl sm:text-2xl font-bold mb-2">
                 Onboarding Guide
               </h1>
               <p className="text-sm sm:text-base text-muted-foreground">
