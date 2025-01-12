@@ -3,12 +3,20 @@
 import { auth, signIn } from "@/auth";
 import { AuthSession } from "@/types";
 import { google } from "googleapis";
-import { handleError } from "./helpers.action";
+import { cookies } from "next/headers";
+import { redirect } from "next/navigation";
 
 export async function handleGoogleSignIn(): Promise<never> {
   return signIn("google", {
     redirectTo: "/guide?showgcpselector=true",
     redirect: true,
+  });
+}
+
+async function clearCookiesOnAuthError() {
+  const cookieStore = await cookies();
+  cookieStore.getAll().forEach((cookie) => {
+    cookieStore.delete(cookie.name);
   });
 }
 
@@ -38,7 +46,15 @@ export async function getGcpProjects() {
 
     /* eslint-disable @typescript-eslint/no-explicit-any */
   } catch (error: any) {
-    handleError(error);
+    if (
+      error?.status === 401 ||
+      error?.status === 403 ||
+      error.name === "Not authenticated"
+    ) {
+      await clearCookiesOnAuthError();
+      redirect("/guide");
+    }
+    throw error;
   }
 }
 
@@ -68,6 +84,13 @@ export async function getStorageBuckets(projectId: string) {
 
     return response.data.items || [];
   } catch (error: any) {
-    handleError(error);
+    if (
+      error?.status === 401 ||
+      error?.status === 403 ||
+      error.name === "Not authenticated"
+    ) {
+      await clearCookiesOnAuthError();
+    }
+    throw error;
   }
 }

@@ -5,7 +5,7 @@ import { useSearchParams } from "next/navigation";
 import { useQuery } from "@tanstack/react-query";
 import { tasks as initialTasks, policies, STORAGE_KEY } from "@/constants";
 import { AuthSession, Task } from "@/types";
-import { getGcpProjects, getStorageBuckets } from "@/lib/actions/gcp.action";
+import { getGcpProjects, getStorageBuckets } from "@/lib/actions/auth.action";
 import ProjectSelectorDialog from "./dialogs/ProjectSelectorDialog";
 import ResourcesDialog from "./dialogs/ResourcesDialog";
 import TaskItem from "./TaskItem";

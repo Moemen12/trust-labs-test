@@ -3,7 +3,7 @@ import React, { JSX } from "react";
 
 import clsx from "clsx";
 import { Button } from "@/components/ui/button";
-import { handleGoogleSignIn } from "@/lib/actions/gcp.action";
+import { handleGoogleSignIn } from "@/lib/actions/auth.action";
 
 interface SignInProps {
   textBtn?: string;
